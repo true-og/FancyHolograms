@@ -203,7 +203,6 @@ public final class Hologram1_20_4 extends Hologram {
         // TODO: fix this
 //        final var protocolVersion = FancyHologramsPlugin.get().isUsingViaVersion() ? Via.getAPI().getPlayerVersion(player.getUniqueId()) : MINIMUM_PROTOCOL_VERSION;
 //        if (protocolVersion < MINIMUM_PROTOCOL_VERSION) {
-//            System.out.println("nope protocol");
 //            return false;
 //        }
 
