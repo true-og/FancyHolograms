@@ -9,7 +9,8 @@ dependencies {
 
     compileOnly("de.oliver:FancyLib:${findProperty("fancyLibVersion")}")
 
-    implementation("me.dave:ChatColorHandler:${findProperty("chatcolorhandlerVersion")}")
+    compileOnly("org.lushplugins:ChatColorHandler:4.0.0")
+
 }
 
 tasks {

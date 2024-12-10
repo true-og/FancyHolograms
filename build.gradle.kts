@@ -1,3 +1,4 @@
+
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import net.minecrell.pluginyml.paper.PaperPluginDescription
 import java.io.BufferedReader
@@ -28,7 +29,7 @@ allprojects {
 
         maven(url = "https://repo.papermc.io/repository/maven-public/")
         maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-
+        maven(url = "https://repo.lushplugins.org/releases/")
         maven(url = "https://repo.fancyplugins.de/snapshots")
         maven(url = "https://repo.fancyplugins.de/releases")
         maven(url = "https://repo.smrt-1.com/releases")
@@ -37,17 +38,14 @@ allprojects {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:${findProperty("minecraftVersion")}-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
 
     implementation(project(":api"))
-    implementation(project(":implementation_1_20_4", configuration = "reobf"))
-    implementation(project(":implementation_1_20_2", configuration = "reobf"))
-    implementation(project(":implementation_1_20_1", configuration = "reobf"))
     implementation(project(":implementation_1_19_4", configuration = "reobf"))
 
     implementation("de.oliver:FancyLib:${findProperty("fancyLibVersion")}")
     compileOnly("de.oliver:FancyNpcs:${findProperty("fancyNpcsVersion")}")
-    compileOnly("me.dave:ChatColorHandler:${findProperty("chatcolorhandlerVersion")}")
+    compileOnly("org.lushplugins:ChatColorHandler:4.0.0")
 //    implementation("de.oliver.FancyAnalytics:api:${findProperty("fancyAnalyticsVersion")}")
 //    implementation("org.incendo:cloud-core:${findProperty("cloudCoreVersion")}")
 //    implementation("org.incendo:cloud-paper:${findProperty("cloudPaperVersion")}")
@@ -80,7 +78,6 @@ paper {
 tasks {
     runServer {
         minecraftVersion(findProperty("minecraftVersion").toString())
-//        minecraftVersion("1.20.4")
 
         downloadPlugins {
             modrinth("fancynpcs", "2.2.0")
@@ -130,7 +127,7 @@ tasks {
 
     compileJava {
         options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
-        options.release = 21
+        options.release = 17
         // For cloud-annotations, see https://cloud.incendo.org/annotations/#command-components
         options.compilerArgs.add("-parameters")
     }
@@ -159,6 +156,7 @@ tasks {
             expand(props)
         }
     }
+
 }
 
 tasks.publishAllPublicationsToHangar {
@@ -170,7 +168,7 @@ tasks.modrinth {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 fun getCurrentCommitHash(): String {
@@ -198,7 +196,7 @@ hangarPublish {
             paper {
                 jar = tasks.shadowJar.flatMap { it.archiveFile }
                 platformVersions =
-                    listOf("1.19.4", "1.20", "1.20.1", "1.20.2", "1.20.3", "1.20.4", "1.20.5", "1.20.6", "1.21")
+                    listOf("1.19.4")
             }
         }
     }
@@ -210,6 +208,6 @@ modrinth {
     versionNumber.set(project.version.toString())
     versionType.set("alpha")
     uploadFile.set(file("build/libs/${project.name}-${project.version}.jar"))
-    gameVersions.addAll(listOf("1.19.4", "1.20", "1.20.1", "1.20.2", "1.20.3", "1.20.4", "1.20.5", "1.20.6", "1.21"))
+    gameVersions.addAll(listOf("1.19.4"))
     loaders.add("paper")
 }

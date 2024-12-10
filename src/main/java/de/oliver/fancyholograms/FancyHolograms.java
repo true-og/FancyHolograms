@@ -221,9 +221,6 @@ public final class FancyHolograms extends JavaPlugin implements FancyHologramsPl
         final var version = Bukkit.getMinecraftVersion();
 
         return switch (version) {
-            case "1.20.3", "1.20.4" -> Hologram1_20_4::new;
-            case "1.20.2" -> Hologram1_20_2::new;
-            case "1.20", "1.20.1" -> Hologram1_20_1::new;
             case "1.19.4" -> Hologram1_19_4::new;
             default -> null;
         };
