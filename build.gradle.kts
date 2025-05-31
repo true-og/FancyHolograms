@@ -7,7 +7,7 @@ import java.io.InputStreamReader
 plugins {
     id("java-library")
     id("maven-publish")
-
+	id("eclipse")
     id("xyz.jpenilla.run-paper") version "2.2.4"
     id("io.github.goooler.shadow") version "8.1.7"
     id("net.minecrell.plugin-yml.paper") version "0.6.0"
